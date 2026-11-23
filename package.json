@@ -1,0 +1,88 @@
+{
+  "name": "gas",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Gas · 氛围白模沙盒 3D 空间编辑工具",
+  "author": "Gas",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build:viewer": "vite build --config vite.viewer.config.ts",
+    "build": "npm run build:viewer && tsc -b && vite build",
+    "preview": "vite preview",
+    "pack:win": "npm run build && electron-builder --win nsis dir && node scripts/finalize-gas-release.mjs"
+  },
+  "build": {
+    "appId": "com.gas.sketchpad",
+    "productName": "Gas",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/main.cjs",
+      "electron/preload.cjs",
+      "build/icon.png",
+      "!node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Gas",
+      "displayLanguageSelector": true,
+      "installerLanguages": [
+        "zh_CN",
+        "zh_TW",
+        "en_US",
+        "ja_JP"
+      ],
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "include": "build/installer.nsh",
+      "artifactName": "Gas-Setup-${version}.${ext}",
+      "deleteAppDataOnUninstall": false
+    }
+  },
+  "dependencies": {
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.176.0",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@types/three": "^0.176.0",
+    "@vitejs/plugin-react": "^4.5.0",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

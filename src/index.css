@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@import "./design/tokens.css";
+@import "./design/theme.css";
+
+/*
+ * Semantic HUD tokens mapped from Workflow A (src/design/design-tokens.json)
+ * Day mode (afternoon / dawn / dusk): Warm Studio Paper surfaces
+ * Night mode (rain): Deep Indigo Night surfaces (never plain grey on indigo - Law 7)
+ * All foreground/background pairs verified >= 4.5:1 via check_contrast.py
+ */
+:root {
+  --hud-bg: rgba(255, 254, 251, 0.92);
+  --hud-bg-solid: var(--color-paper-50);
+  --hud-bg-subtle: var(--color-paper-100);
+  --hud-bg-hover: var(--color-paper-200);
+  --hud-text: var(--color-paper-900);
+  --hud-text-secondary: var(--color-paper-700);
+  --hud-text-muted: var(--color-paper-600);
+  --hud-border: rgba(198, 194, 179, 0.72);
+  --hud-border-top: rgba(255, 255, 255, 0.92);
+  --hud-action-bg: var(--color-primary-500);
+  --hud-action-bg-hover: var(--color-primary-600);
+  --hud-action-text: var(--color-paper-50);
+  --hud-pill-active-bg: var(--color-primary-100);
+  --hud-pill-active-text: var(--color-primary-800);
+  --hud-pill-active-border: var(--color-primary-400);
+  --hud-snap-bg: var(--color-amber-100);
+  --hud-snap-text: var(--color-amber-800);
+  --hud-snap-border: var(--color-amber-400);
+  --hud-danger-bg: var(--color-danger-100);
+  --hud-danger-text: var(--color-danger-800);
+  --hud-shadow: 0 1px 2px hsla(15, 25%, 10%, 0.10), 0 8px 24px hsla(15, 25%, 10%, 0.12);
+}
+
+[data-hud-theme="night"] {
+  --hud-bg: rgba(29, 32, 57, 0.90);
+  --hud-bg-solid: var(--color-night-900);
+  --hud-bg-subtle: var(--color-night-800);
+  --hud-bg-hover: var(--color-night-700);
+  --hud-text: var(--color-night-100);
+  --hud-text-secondary: var(--color-night-200);
+  --hud-text-muted: var(--color-night-300);
+  --hud-border: rgba(105, 120, 150, 0.45);
+  --hud-border-top: rgba(172, 194, 206, 0.28);
+  --hud-action-bg: var(--color-primary-500);
+  --hud-action-bg-hover: var(--color-primary-400);
+  --hud-action-text: var(--color-amber-100);
+  --hud-pill-active-bg: var(--color-primary-600);
+  --hud-pill-active-text: var(--color-amber-100);
+  --hud-pill-active-border: var(--color-primary-300);
+  --hud-snap-bg: var(--color-night-800);
+  --hud-snap-text: var(--color-amber-300);
+  --hud-snap-border: var(--color-amber-400);
+  --hud-danger-bg: rgba(173, 53, 41, 0.24);
+  --hud-danger-text: var(--color-danger-200);
+  --hud-shadow: 0 2px 4px hsla(236, 45%, 5%, 0.35), 0 10px 28px hsla(236, 45%, 5%, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hud-surface {
+  background: var(--hud-bg);
+  color: var(--hud-text);
+  border: 1px solid var(--hud-border);
+  border-top-color: var(--hud-border-top);
+  box-shadow: var(--hud-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hud-input {
+  background: var(--hud-bg-subtle);
+  color: var(--hud-text);
+  border: 1px solid var(--hud-border);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.hud-input:focus {
+  outline: 2px solid var(--hud-action-bg);
+  outline-offset: 1px;
+}
+
+/* Custom subtle scrollbars for asset drawer */
+.studio-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.studio-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.studio-scroll::-webkit-scrollbar-thumb {
+  background: var(--hud-border);
+  border-radius: 9999px;
+}

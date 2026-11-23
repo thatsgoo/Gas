@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build & Packaging Outputs (upload release installers to GitHub Releases instead!)
+dist/
+release/
+*.tsbuildinfo
+
+# Local User Saved Assets & Agent Metadata
+saved-models/
+.agents/
+
+# Logs & Temp Files
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+*.tmp
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
